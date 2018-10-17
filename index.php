@@ -37,6 +37,11 @@ $woocommerce = new Client(
 			    	//print_r($producto->images[0]->src)
 				?>
 			</div>
+			<div class="col-md-4 text-center">
+				<span>Carrito</span>
+				<br>
+				# Artículos: <span id="items"></span>
+			</div>
 		</div>
 	</section>
 
@@ -46,5 +51,8 @@ $woocommerce = new Client(
   crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript">
+		infoCar();
+	</script>
 </body>
 </html>

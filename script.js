@@ -11,6 +11,7 @@ function addToCar(id, name){
     if (a == null) {
     	var newProd =  [prod]
     	sessionStorage.setItem('car', JSON.stringify(newProd))
+    	infoCar()
     }else{
     	$.each(a,function(i, value){
     		if (value.id == id) {
@@ -21,7 +22,22 @@ function addToCar(id, name){
     	if (add) {
 			a.push(prod);
 		}
-		sessionStorage.setItem('car', JSON.stringify(a));
+		sessionStorage.setItem('car', JSON.stringify(a))
+		infoCar()
     }
 	
+}
+
+function infoCar(){
+	var a = JSON.parse(sessionStorage.getItem('car'));
+	console.log(a)
+	if (a == null) {
+    	$("#items").html("0")
+    }else{
+    	var cant = 0
+    	$.each(a,function(i, value){
+    		cant = cant + parseInt(value.quantity)
+    	})
+    	$("#items").html(cant)
+    }
 }
