@@ -1,36 +1,40 @@
 function addToCar(id, name){
 	var cantidad = $("[data-id='"+id+"']").val()
-	var add = true
-	console.log(id, name, cantidad)
-	var prod = {
-		"id": id,
-		"name": name,
-		"quantity": cantidad
-	}
-    var a = JSON.parse(sessionStorage.getItem('car'));
-    if (a == null) {
-    	var newProd =  [prod]
-    	sessionStorage.setItem('car', JSON.stringify(newProd))
-    	counterItemsCar()
-    }else{
-    	$.each(a,function(i, value){
-    		if (value.id == id) {
-    			add = false
-    			a[i] = prod
-    		}
-    	})
-    	if (add) {
-			a.push(prod);
+	if (cantidad !== "") {
+		var add = true
+		var prod = {
+			"id": id,
+			"name": name,
+			"quantity": cantidad
 		}
-		sessionStorage.setItem('car', JSON.stringify(a))
-		counterItemsCar()
-    }
+	    var a = JSON.parse(sessionStorage.getItem('car'));
+	    if (a == null && prod.quantity !== "0"  ) {
+	    	var newProd =  [prod]
+	    	sessionStorage.setItem('car', JSON.stringify(newProd))
+	    	counterItemsCar()
+	    }else{
+	    	$.each(a,function(i, value){
+	    		if (value.id == id) {
+	    			if (cantidad == "0") {
+		    			a = a.filter(item => item.id !== id);
+	    			}else{
+	    				add = false
+		    			a[i] = prod
+	    			}
+	    		}
+	    	})
+	    	if (add && prod.quantity !== "0"	) {
+				a.push(prod);
+			}
+			sessionStorage.setItem('car', JSON.stringify(a))
+			counterItemsCar()
+	    }
+	}
 	
 }
 
 function counterItemsCar(){
 	var a = JSON.parse(sessionStorage.getItem('car'));
-	console.log(a)
 	if (a == null) {
     	$("#items").html("0")
     }else{
