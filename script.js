@@ -11,7 +11,7 @@ function addToCar(id, name){
     if (a == null) {
     	var newProd =  [prod]
     	sessionStorage.setItem('car', JSON.stringify(newProd))
-    	infoCar()
+    	counterItemsCar()
     }else{
     	$.each(a,function(i, value){
     		if (value.id == id) {
@@ -23,12 +23,12 @@ function addToCar(id, name){
 			a.push(prod);
 		}
 		sessionStorage.setItem('car', JSON.stringify(a))
-		infoCar()
+		counterItemsCar()
     }
 	
 }
 
-function infoCar(){
+function counterItemsCar(){
 	var a = JSON.parse(sessionStorage.getItem('car'));
 	console.log(a)
 	if (a == null) {
