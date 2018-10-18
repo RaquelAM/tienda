@@ -31,16 +31,20 @@ $woocommerce = new Client(
 				foreach ($productos as $producto){
 					$html = '<div class="col-md-6 text-center"><img src="'.$producto->images[0]->src.'" style="width: 100%;"><span style="display: block;">'.$producto->name.'</span>'.PHP_EOL;
 					$html .= '<input type="number" min="0" placeholder="cantidad" data-id="'.$producto->id.'">'.PHP_EOL;
-					$html .= '<button onclick="addToCar('.$producto->id.',\''.$producto->name.'\')">Agregar a carrito</button></div>'.PHP_EOL;
+					$html .= '<button onclick="addToCar('.$producto->id.',\''.$producto->name.'\','.$producto->price.')">Agregar a carrito</button></div>'.PHP_EOL;
 			    	echo $html;
 			    	}
-			    	//print_r($producto->images[0]->src)
+			    	//print_r($producto)
 				?>
 			</div>
 			<div class="col-md-4 text-center">
 				<span>Carrito</span>
 				<br>
 				# Artículos: <span id="items"></span>
+				<div id="listCar">
+					
+				</div>
+				<div id="total"></div>
 			</div>
 		</div>
 	</section>

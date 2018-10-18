@@ -1,12 +1,14 @@
-function addToCar(id, name){
+function addToCar(id, name, price){
 	var cantidad = $("[data-id='"+id+"']").val()
 	if (cantidad !== "") {
 		var add = true
 		var prod = {
 			"id": id,
 			"name": name,
-			"quantity": cantidad
+			"quantity": cantidad,
+			"price": price
 		}
+		console.log(prod)
 	    var a = JSON.parse(sessionStorage.getItem('car'));
 	    if (a == null && prod.quantity !== "0"  ) {
 	    	var newProd =  [prod]
@@ -43,5 +45,20 @@ function counterItemsCar(){
     		cant = cant + parseInt(value.quantity)
     	})
     	$("#items").html(cant)
+    	listCarInfo()
     }
+}
+function listCarInfo(){
+	$("#listCar").html("")
+	var a = JSON.parse(sessionStorage.getItem('car'));
+	var total = 0
+	if (a !== null) {
+		if (a.length !== 0) {
+			$.each(a, function(i, value){
+				$("#listCar").append(value.name + " " + value.quantity + " x $" + value.price + "<br>")
+				total = total + (parseInt(value.quantity) * value.price)
+				$("#total").html("Total: $" + total)
+			})
+		}
+	}
 }
