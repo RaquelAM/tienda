@@ -3,7 +3,7 @@ function addToCar(id, name, price){
 	if (cantidad !== "") {
 		var add = true
 		var prod = {
-			"id": id,
+			"product_id": id,
 			"name": name,
 			"quantity": cantidad,
 			"price": price
@@ -62,3 +62,33 @@ function listCarInfo(){
 		}
 	}
 }
+
+$("#sameInfo").on("click", function(){
+	$( "input[name='first_name_shipping']" ).val($( "input[name='first_name']" ).val())
+	$( "input[name='last_name_shipping']" ).val($( "input[name='last_name']" ).val())
+	$( "input[name='address_1_shipping']" ).val($( "input[name='address_1']" ).val())
+	$( "input[name='city_shipping']" ).val($( "input[name='city']" ).val())
+	$( "input[name='state_shipping']" ).val($( "input[name='state']" ).val())
+	$( "input[name='postcode_shipping']" ).val($( "input[name='postcode']" ).val())
+	$( "input[name='country_shipping']" ).val($( "input[name='country']" ).val())
+})
+
+$("#createOrder").on("click", function(e){
+	e.preventDefault()
+
+	var a = sessionStorage.getItem('car');
+	$.ajax({
+		type: "POST",
+		data: $('#orderForm').serialize() + "&productList=" + a,
+		url: "order.php",
+		success: function (mje) {
+			
+			console.log(mje)
+
+
+			localStorage.clear();
+			
+		},
+		
+	});
+})
