@@ -45,7 +45,7 @@ $woocommerce = new Client(
 					
 				</div>
 				<div id="total"></div>
-				<a href="order-form.php">Finalizar Compra</a>
+				<a href="order-list.php">Finalizar Compra</a>
 			</div>
 		</div>
 	</section>
